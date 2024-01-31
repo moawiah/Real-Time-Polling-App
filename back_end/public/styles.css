@@ -1,0 +1,153 @@
+/* public/styles/styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #555;
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #686464;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar a:hover {
+    color: #ffc107;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .cta-button {
+    padding: 12px 25px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .cta-button:hover {
+    background-color: #555;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .option {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Additional styling for form elements */
+  form {
+    margin-top: 30px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: #555;
+  }
+  
+  button {
+    background-color: #333;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .navbar .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar a {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  
+    .cta-button {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  }
+  
