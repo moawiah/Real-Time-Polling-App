@@ -10,22 +10,22 @@
 <body>
 
 <%- include('partials/navbar') %>
-
 <div class="container">
-  <!-- Display poll details and voting options -->
-  <% if (polls.length > 0) { %>
-    <% polls.forEach(poll => { %>
-        <h3 class="title"><%= poll.question  %></h3>
-        <% if (poll.options.length > 0) { %>
-            <% poll.options.forEach(option => { %>
-                <p class="option"><%= option  %></p>
-                <% }) %>
-            <% } %>
-    
-    <% }) %>
-<% } else { %>
-    <p class="option">No polls found to display</p>
-    <% } %>
+    <div class="details content">
+            <a class="single" href="/single-poll/<%= poll._id %>"><h3 class="title"><%= poll.question  %></h3>  </a>
+            <% if (poll.options.length > 0) { %>
+                <% poll.options.forEach(option => { %>
+                    <p class="option"><%= option  %></p>
+                    <% }) %>
+                <% } %>
+                    <!-- <a class="delete" poll_delete="<%= poll._id %>">Delete</a> -->
+                    <!-- <a class="delete" href="/delete-poll/<%= poll._id %>">Delete</a> -->
+                    
+                    <form action="/delete-poll/<%= poll._id %>?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="delete" type="submit">Delete</button>
+                      </form>
+    </div>
 </div>
 
 </body>

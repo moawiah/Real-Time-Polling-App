@@ -1,5 +1,4 @@
-/* public/styles/styles.css */
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -80,6 +79,34 @@ body {
     background-color: #f5f5f5;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+    /* Styling list of polls */
+  .list a{
+    display: block;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 6px solid crimson;
+    text-decoration: none;
+  }
+  .list a:hover h3{
+    color: crimson;
+  }
+
+    /* Delete button styles */
+  .details{
+    position: relative;
+  }
+  .delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    padding: 8px;
+  }
+  .delete:hover{
+    cursor: pointer;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
   }
   
   /* Additional styling for form elements */

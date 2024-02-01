@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Poll Details</title>
+</head>
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="container">
+    <div class="list">
+  <!-- Display poll details and voting options -->
+  <% if (polls.length > 0) { %>
+    <% polls.forEach(poll => { %>
+        <a class="single" href="/single-poll/<%= poll._id %>"><h3 class="title"><%= poll.question  %></h3>  </a>
+          
+        <!-- <% if (poll.options.length > 0) { %>
+            <% poll.options.forEach(option => { %>
+                <p class="option"><%= option  %></p>
+                <% }) %>
+            <% } %>  -->
+
+    <% }) %>
+<% } else { %>
+    <p class="option">No polls found to display</p>
+    <% } %>
+    </div>
+</div>
+
+</body>
+</html>
