@@ -3,11 +3,8 @@ const morgan = require('morgan');
 const app = express();
 const methodOverride = require('method-override');
 
-const mongoose = require('mongoose');
-const dbURI = 'mongodb+srv://muawiyaasali:zAhILtuK7gf0kkPA@pollingappdb.iphhzly.mongodb.net/pollingAppDB?retryWrites=true&w=majority'
-const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
-
 const poll_routes = require('./routes/poll_routes');
+const config = require('./config/db');
 
 // Use morgan middleware with the "combined" format
 app.use(morgan('dev'));
@@ -24,15 +21,11 @@ app.use(methodOverride('_method'));
 // static files 
 app.use(express.static('public'));
 
-const port = 3000;
+config.connect_to_mongodb();
 
-
-
-mongoose.connect(dbURI, clientOptions)
-    .then((result) => app.listen(port, () => {
-        console.log('listening on port ' + port);
-    }))
-    .catch((err) => console.log('error connecting to db' + err));
+app.listen(process.env.APP_PORT, () => {
+    console.log('listening on port ' + process.env.APP_PORT);
+});
 
 app.get('/', (req, res) => {
     res.render('index');
