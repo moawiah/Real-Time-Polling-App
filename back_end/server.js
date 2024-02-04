@@ -4,6 +4,7 @@ const app = express();
 const methodOverride = require('method-override');
 
 const poll_routes = require('./routes/poll_routes');
+const auth_routes = require('./routes/auth_routes');
 const config = require('./config/db');
 
 // Use morgan middleware with the "combined" format
@@ -31,5 +32,6 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-// poll routes
+// registered routes
 app.use(poll_routes);
+app.use(auth_routes);
