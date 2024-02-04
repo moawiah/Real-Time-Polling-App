@@ -14,7 +14,8 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 
 // adding url middleware to access data in requests
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true})); // Data coming from HTML forms
+app.use(express.json()); // Data coming as JSON - POSTMAN for instace 
 
 // Middleware for method override - check delete endoint
 app.use(methodOverride('_method'));
