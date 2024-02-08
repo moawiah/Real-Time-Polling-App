@@ -1,5 +1,26 @@
 const User = require('../models/userModel');
 
+// Error handler
+const error_handler = (err) => {
+    console.error(err.message, err.code);
+    let errors = {email: '', password: ''};
+
+    // Report duplicate errors
+    if (err.code === 11000){
+        errors.email = 'That email already exists!'
+        return errors;
+    }
+
+    if (err.message.includes('user validation failed')){ // check for "user validation failed" in error message to catch validation errors
+        // Navigate through err object and get values (without keys) of the errors fields for futher processing
+        Object.values(err.errors).forEach(({properties}) => {
+                errors[properties.path] = properties.message;
+            })
+    }
+
+    return errors;
+}
+
 const signup_get = (req, res) => {
     res.render('auth/signup');
 };
@@ -19,8 +40,9 @@ const signup_post = async (req, res) => {
         }
         res.status(201).json(user);
     } catch (err) {
-        console.error(err);
-        res.status(400).send('error, user not created!');
+        const errors = error_handler(err);
+        // console.error(err);
+        res.status(400).json(errors);
     };
 
 };
