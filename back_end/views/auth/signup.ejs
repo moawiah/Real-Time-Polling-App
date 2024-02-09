@@ -1,1 +1,26 @@
-<h1>Sign up</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Create a Poll</title>
+</head>
+<body>
+
+
+<form action="/signup" method="post">
+    <h2>Sign Up</h2>
+    <label for="username">Username</label>
+    <input type="text" name="username" required/>
+    <div class="username error"> </div>
+    <label for="email">Email</label>
+    <input type="text" name="email" required/>
+    <div class="email error"> </div>
+    <label for="password">Password</label>
+    <input type="password" name="password" required/>
+    <div class="password error"> </div>
+
+    <button type="submit">Sign Up</button>
+</form>
