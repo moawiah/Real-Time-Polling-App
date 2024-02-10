@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+const expiry_interval = 3*24*60*60; // 3 days in seconds
 
 // Error handler
 const error_handler = (err) => {
@@ -21,6 +23,16 @@ const error_handler = (err) => {
     return errors;
 }
 
+// token creation function
+const create_token = (id) => {
+    return jwt.sign(
+        {id}, //payload
+        process.env.SECRET_KEY, // secret key
+        {
+        expiresIn: expiry_interval // optional object for token settings
+    });
+}
+
 const signup_get = (req, res) => {
     res.render('auth/signup');
 };
@@ -38,11 +50,16 @@ const signup_post = async (req, res) => {
         if (!result) {
             console.log('Error saving user!');
         }
-        res.status(201).json(user);
+        // create new token
+        const token = create_token(user._id);
+        console.log(token);
+        // create a cookie in response to save token
+        res.cookie('jwt', token, {httpOnly: true, maxAge: expiry_interval * 1000}); //httponly is to block JS changes from browser
+        res.status(201).redirect('/');
+        
     } catch (err) {
         const errors = error_handler(err);
-        // console.error(err);
-        res.status(400).json(errors);
+        res.status(400).render('auth/error', {error_msg: errors}); //returned error message as a string TODO: handle error as an object
     };
 
 };

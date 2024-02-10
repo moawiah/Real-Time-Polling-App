@@ -37,6 +37,7 @@ userSchema.pre('save', async function (next) {
 // Implement a post hook
 userSchema.post('save', function (doc, next){
   console.log('New user is created & being saved', doc);
+  next();
 });
 
 // Define the User model

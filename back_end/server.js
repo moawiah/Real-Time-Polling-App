@@ -36,22 +36,22 @@ app.get('/', (req, res) => {
 });
 
 //cookie usage examples
-app.get('/set-cookies', (req, res) => {
-    //res.setHeader('Set-Cookie', 'user_data=true');
-    // third argument is an options object which specifies some cookie settings - 1000*60*60*24 stands for one day
-    // httpOnly: true => whether cookie to be accessed from JS through browser
-    // cookies should always be used with HTTPS - check 'secure' setting in cookies for more details
-    res.cookie('user_data', true, {maxAge: 1000*60*60*24, httpOnly: true}); 
+// app.get('/set-cookies', (req, res) => {
+//     //res.setHeader('Set-Cookie', 'user_data=true');
+//     // third argument is an options object which specifies some cookie settings - 1000*60*60*24 stands for one day
+//     // httpOnly: true => whether cookie to be accessed from JS through browser
+//     // cookies should always be used with HTTPS - check 'secure' setting in cookies for more details
+//     res.cookie('user_data', true, {maxAge: 1000*60*60*24, httpOnly: true}); 
 
-    res.send('Just created a new cookie');
-});
+//     res.send('Just created a new cookie');
+// });
 
-app.get('/read-cookies', (req, res) => {
-    const cookie_data = req.cookies;
-    console.log(cookie_data);
+// app.get('/read-cookies', (req, res) => {
+//     const cookie_data = req.cookies;
+//     console.log(cookie_data);
 
-    res.json(cookie_data);
-});
+//     res.json(cookie_data);
+// });
 
 // registered routes
 app.use(poll_routes);

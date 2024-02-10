@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Error</title>
+</head>
+<body>
+    <h2>You have the following error(s):</h2>
+    <% if (Object.keys(error_msg).length > 0) { %>
+        <ul class="error">
+            <% Object.entries(error_msg).forEach(([key, value]) => { %>
+                <% if (value) { %>
+                    <li><strong><%= key %>:</strong> <%= value %></li>
+                <% } %>
+            <% }); %>
+        </ul>
+    <% } %>
+    <!-- You can include additional content or styling as needed -->
+</body>
+
+  </html>
+</html>
