@@ -13,6 +13,20 @@ const error_handler = (err) => {
         return errors;
     }
 
+    // Incorrect email
+    if (err.message === 'Incorrect email'){
+        errors.email = 'We do not have this email in our records!'
+        return errors;
+    }
+
+    // Incorrect password
+    if (err.message === 'Incorrect password'){
+        errors.email = 'Your passowrd is incorrect!'
+        return errors;
+    }
+
+    // Incorrect password
+
     if (err.message.includes('user validation failed')){ // check for "user validation failed" in error message to catch validation errors
         // Navigate through err object and get values (without keys) of the errors fields for futher processing
         Object.values(err.errors).forEach(({properties}) => {
@@ -69,9 +83,18 @@ const login_get = (req, res) => {
 };
 
 const login_post = async (req, res) => {
-    const {username, email, password} = req.body;
-    console.log(username, email, password);
-    res.send('user logged in!');
+    const {email, password} = req.body;
+    console.log(email, password);
+    try {
+        const user = await User.login(email, password);
+        const token = create_token(user._id);
+        // create a cookie in response to save token
+        res.cookie('jwt', token, {httpOnly: true, maxAge: expiry_interval * 1000}); //httponly is to block JS changes from browser
+        res.status(201).redirect('/');
+    } catch (err) {
+        const errors = error_handler(err);
+        res.status(400).render('auth/error', {error_msg: errors}); //returned error message as a string TODO: handle error as an object
+    };
 };
 
 module.exports = {
