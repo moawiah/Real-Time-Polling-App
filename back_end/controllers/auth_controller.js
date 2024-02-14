@@ -97,9 +97,16 @@ const login_post = async (req, res) => {
     };
 };
 
+const logout_get = (req, res) => {
+    //replacing the current cookie with a blank one that has 1 ms lifetime
+    res.cookie('jwt','', {maxAge: 1});
+    res.redirect('/');
+};
+
 module.exports = {
     signup_get,
     signup_post,
     login_get,
-    login_post
+    login_post,
+    logout_get
 }
