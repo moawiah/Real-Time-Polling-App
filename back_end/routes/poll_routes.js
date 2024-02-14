@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const poll_controller = require('../controllers/poll_controller');
-const { auth_required } = require('../middleware/auth_middleware');
+const { auth_required, check_user } = require('../middleware/auth_middleware');
 
 router.get('/create-poll', poll_controller.new_poll_form);
 
