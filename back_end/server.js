@@ -7,6 +7,7 @@ const cookie_parser = require('cookie-parser');
 const poll_routes = require('./routes/poll_routes');
 const auth_routes = require('./routes/auth_routes');
 const config = require('./config/db');
+const { check_user } = require('./middleware/auth_middleware');
 
 // Use morgan middleware with the "combined" format
 app.use(morgan('dev'));
@@ -30,6 +31,9 @@ config.connect_to_mongodb();
 app.listen(process.env.APP_PORT, () => {
     console.log('listening on port ' + process.env.APP_PORT);
 });
+
+// register middleware for all get requests - should be registered before rendering any content (otherwise, user value will not be accessible from views)
+app.get('*', check_user);
 
 app.get('/', (req, res) => {
     res.render('index');
